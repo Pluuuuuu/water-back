@@ -1,7 +1,7 @@
 {
-  "name": "shestyle-backend",
+  "name": "water-backend",
   "version": "1.0.0",
-  "description": "Backend for SheStyle e-commerce website",
+  "description": "Backend for water e-commerce website",
   "main": "index.js",
   "scripts": {
     "start": "node src/server.js",
