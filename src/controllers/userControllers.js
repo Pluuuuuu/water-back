@@ -1,4 +1,4 @@
-const jwt = require('jsonwebtoken');
+// const jwt = require('jsonwebtoken');
 const User = require("../models/User");
 
 // Get User Profile
@@ -59,7 +59,6 @@ exports.updateUserProfile = async (req, res) => {
   }
 };
 const jwt = require('jsonwebtoken');
-const User = require("../models/User");
 
 // Get User Profile
 exports.getUserProfile = async (req, res) => {
