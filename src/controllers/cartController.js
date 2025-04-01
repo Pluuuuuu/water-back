@@ -47,11 +47,20 @@ exports.removeFromCart = async (req, res) => {
 // View cart items
 exports.viewCart = async (req, res) => {
   try {
-    const cartItems = await Cart.findAll({ where: { user_id: req.user.id } });
+    const cartItems = await Cart.findAll({
+      where: { user_id: req.user.id },
+      include: [
+        {
+          model: Product,
+          attributes: ["id", "name", "price", "images"], // Include necessary fields
+        },
+      ],
+    });
     res.json(cartItems);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to retrieve cart items' });
-  }
+  } catch ( error )
+  {
+    console.error( "Error retrieving cart items:", error );
+    res.status(500).json({ error: "Failed to retrieve cart items", details: error.message });}
 };
 
 // Update product quantity in cart
