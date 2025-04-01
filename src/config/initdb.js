@@ -1,4 +1,4 @@
-//initialize db
+// initialize db
 require('dotenv').config(); // Load environment variables from .env
 const mysql = require('mysql2/promise'); //create a connection to the MySQL database.
 
@@ -27,41 +27,40 @@ async function initDatabase() {
     }
 }
 
-initDatabase();
+// initDatabase();
 
-/*//delete and init database 
+//delete and init database 
 
-require('dotenv').config(); // Load environment variables from .env
-const mysql = require('mysql2/promise');
+// require('dotenv').config(); // Load environment variables from .env
+// const mysql = require('mysql2/promise');
 
-async function initDatabase() {
-    try {
-        console.log("DB Config:", process.env.DB_USER, process.env.DB_PASSWORD ? "Has Password" : "No Password"); // Debug
+// async function initDatabase() {
+//     try {
+//         console.log("DB Config:", process.env.DB_USER, process.env.DB_PASSWORD ? "Has Password" : "No Password"); // Debug
 
-        // Connect to MySQL without specifying a database (to drop and recreate it)
-        const connection = await mysql.createConnection({
-            host: process.env.DB_HOST || 'localhost',
-            user: process.env.DB_USER || 'root',
-            password: process.env.DB_PASSWORD || '',  // Ensure it reads the password
-            port: process.env.DB_PORT || 3306
-        });
+//         // Connect to MySQL without specifying a database (to drop and recreate it)
+//         const connection = await mysql.createConnection({
+//             host: process.env.DB_HOST || 'localhost',
+//             user: process.env.DB_USER || 'root',
+//             password: process.env.DB_PASSWORD || '',  // Ensure it reads the password
+//             port: process.env.DB_PORT || 3306
+//         });
 
-        console.log("Connected to MySQL!");
+//         console.log("Connected to MySQL!");
 
-        // Drop the existing database (if it exists)
-        await connection.query(`DROP DATABASE IF EXISTS ${process.env.DB_NAME}`);
-        console.log(`Database '${process.env.DB_NAME}' dropped.`);
+//         // Drop the existing database (if it exists)
+//         await connection.query(`DROP DATABASE IF EXISTS ${process.env.DB_NAME}`);
+//         console.log(`Database '${process.env.DB_NAME}' dropped.`);
 
-        // Create a new database
-        await connection.query(`CREATE DATABASE ${process.env.DB_NAME}`);
-        console.log(`Database '${process.env.DB_NAME}' created.`);
+//         // Create a new database
+//         await connection.query(`CREATE DATABASE ${process.env.DB_NAME}`);
+//         console.log(`Database '${process.env.DB_NAME}' created.`);
 
-        // Close connection
-        await connection.end();
-    } catch (error) {
-        console.error("Error during database initialization:", error);
-    }
-}
+//         // Close connection
+//         await connection.end();
+//     } catch (error) {
+//         console.error("Error during database initialization:", error);
+//     }
+// }
 
-initDatabase();
-*/
+// initDatabase();
