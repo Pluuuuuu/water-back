@@ -6,32 +6,63 @@ const Product = require('../models/Product');
 exports.addCategory = async (req, res) => {
     const { name , background_image} = req.body;
     console.log({name, background_image});
-    try {
-        const category = await Category.create({ name, background_image });
-        return res.status(201).json(category);
+    try
+    {
+      // Check if both fields are provided
+      if (!name || !background_image) {
+        return res
+          .status(400)
+          .json({ message: "Name and background image are required." });
+      }
+
+      // Check if the category already exists
+      const existingCategory = await Category.findOne({
+        where: { name },
+      });
+
+      // If category with the same name exists, return an error
+      if (existingCategory) {
+        return res
+          .status(400)
+          .json({ message: "Category with this name already exists." });
+        }
+        
+      const category = await Category.create({ name, background_image });
+      return res.status(201).json(category);
     } catch (error) {
-        return res.status(500).json({ error: 'Error adding category' });
+        return res
+          .status(500)
+          .json({ error: "Error adding category", details: error.message });
     }
 };
 
 // Delete an existing category
 exports.deleteCategory = async (req, res) => {
     const { id } = req.params;
-    try {
-        const category = await Category.findByPk(id, {
-            include: Product // Ensure the category is not associated with any products
-        });
+    try
+    {
+      // Log to check the received ID
+      console.log("Received ID for deletion:", id);
 
-        if (!category) {
-            return res.status(404).json({ error: 'Category not found' });
+      const category = await Category.findByPk(id, {
+        include: Product, // Ensure the category is not associated with any products
+      });
+
+      if (!category) {
+        return res.status(404).json({ error: "Category not found" });
+      }
+
+      if (category.Products.length > 0) {
+        return res
+          .status(400)
+          .json({ error: "Category has associated products, cannot delete" });
         }
+        
+      // Log the category being deleted
+      console.log("Deleting category:", category);
 
-        if (category.Products.length > 0) {
-            return res.status(400).json({ error: 'Category has associated products, cannot delete' });
-        }
-
-        await category.destroy();
-        return res.status(200).json({ message: 'Category deleted successfully' });
+      await category.destroy();
+      return res.status(200).json({ message: "Category deleted successfully" });
     } catch (error) {
         return res.status(500).json({ error: 'Error deleting category' });
     }
