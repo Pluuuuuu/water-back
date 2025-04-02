@@ -24,7 +24,8 @@ const addProduct = async (req, res) => {
 
     res.status(201).json(product);
   } catch (error) {
-    res.status(500).json({ message: 'Server error', error });
+    console.error("Error adding product:", error);
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
 
@@ -45,7 +46,6 @@ const getProductById = async (req, res) => {
   const { id } = req.params;
   try {
     const product = await Product.findByPk(id, {
-      include: [{ model: Category }] // Include Category model with proper association
     });
     if (!product) return res.status(404).json({ message: 'Product not found' });
 
