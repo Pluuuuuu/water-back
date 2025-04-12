@@ -7,7 +7,7 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
   logging: false,  // Set to true for debugging
   dialectOptions: {
     ssl: {
-      rejectUnauthorized: true,  // Aiven requires SSL connections
+      rejectUnauthorized: false,  // Aiven requires SSL connections
     },
   },
 } 
