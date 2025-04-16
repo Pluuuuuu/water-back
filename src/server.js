@@ -13,7 +13,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://frontend-water-yu71.vercel.app/product",
+    origin: "https://frontend-water-yu71.vercel.app",
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
