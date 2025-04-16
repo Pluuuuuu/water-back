@@ -8,11 +8,11 @@ async function initDatabase() {
 
         // Establish Connection
         const connection = await mysql.createConnection({
-            host: process.env.DB_HOST || 'localhost',
-            user: process.env.DB_USER || 'root',
+            host: process.env.DB_HOST || 'water-db-maryamz-2f63.k.aivencloud.com',
+            user: process.env.DB_USER || 'avnadmin',
             password: process.env.DB_PASSWORD || '',  // Ensure it reads the password
-            database: process.env.DB_NAME || 'water_db',
-            port: process.env.DB_PORT || 3306
+            database: process.env.DB_NAME || 'water-db',
+            port: process.env.DB_PORT || 19371
         });
 
         console.log("Connected to MySQL!");

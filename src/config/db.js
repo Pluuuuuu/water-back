@@ -50,3 +50,5 @@ Cart.belongsTo(Product, { foreignKey: 'product_id' });
 Wishlist.belongsTo(Product, { foreignKey: 'product_id' });
 
 module.exports = { sequelize, User, Category, Product, Cart, Wishlist, Order, OrderItem, Review };
+
+//edit
