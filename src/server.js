@@ -12,15 +12,12 @@ const cors = require("cors");
 const app = express();
 
 const allowedOrigins = [
-  "https://frontend-water-wine.vercel.app/",
-  "http://localhost:5173",
-  " https://water-back-esh3.onrender.com",
-  "https://water-back-production.up.railway.app/",
-  
+  "https://frontend-water-kxwucg8mo-marys-projects-4a38a581.vercel.app/",
+  "https://frontend-water-yu71.vercel.app/",
 ];
 
 app.use(
-cors({
+  cors({
     origin: function (origin, callback) {
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
@@ -32,8 +29,9 @@ cors({
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
     maxAge: 600,
-} )
+  })
 );
+
 
 app.use(express.json()); // Middleware for parsing JSON requests
 
