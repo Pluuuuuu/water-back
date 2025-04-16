@@ -12,9 +12,9 @@ const cors = require("cors");
 const app = express();
 
 const allowedOrigins = [
-  "https://frontend-water-yu71.vercel.app",
-  "http://localhost:5173", 
- " https://water-back-production.up.railway.app/",
+  "https://frontend-water-wine.vercel.app/",
+  "http://localhost:5173",
+  " https://water-back-production.up.railway.app/",
 ];
 
 app.use(
