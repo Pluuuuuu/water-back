@@ -11,15 +11,27 @@ const cartRoutes = require('./routes/cartRoutes');
 const cors = require("cors");
 const app = express();
 
+const allowedOrigins = [
+  "https://frontend-water-yu71.vercel.app",
+  "http://localhost:5173", 
+];
+
 app.use(
-  cors({
-    origin: "https://frontend-water-yu71.vercel.app",
+cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
     maxAge: 600,
-  })
+} )
 );
+
 app.use(express.json()); // Middleware for parsing JSON requests
 
 app.use((req, res, next) => {
