@@ -11,24 +11,16 @@ const cartRoutes = require('./routes/cartRoutes');
 const cors = require("cors");
 const app = express();
 
-const allowedOrigins = [
-  "https://frontend-water-kxwucg8mo-marys-projects-4a38a581.vercel.app/",
-  "https://frontend-water-yu71.vercel.app/",
-];
+// const allowedOrigins = [
+//   "https://frontend-water-kxwucg8mo-marys-projects-4a38a581.vercel.app/",
+//   "https://frontend-water-yu71.vercel.app/",
+// ];
 
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: "*", // Allow all origins
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
-    maxAge: 600,
   })
 );
 
