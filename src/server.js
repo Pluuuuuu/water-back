@@ -14,6 +14,7 @@ const app = express();
 const allowedOrigins = [
   "https://frontend-water-yu71.vercel.app",
   "http://localhost:5173", 
+ " https://water-back-production.up.railway.app/",
 ];
 
 app.use(
